@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Social Ads — Facebook · Instagram · YouTube · Twitter</title>
+  <link rel="shortcut icon" href="https://images.unsplash.com/photo-1506152983151-0f45684b0e56?q=80&w=64&auto=format&fit=crop&crop=faces" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#2563eb; /* blue */
+      --accent-2:#ea580c; /* orange for youtube */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      color-scheme: dark;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+height:100%;
+margin:0;
+font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+color:#e6eef6;
+
+background:
+linear-gradient(rgba(7,16,40,0.85), rgba(7,24,39,0.9)),
+url("https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .logo{display:flex;gap:12px;align-items:center;font-weight:700;font-size:1.05rem}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:grid;place-items:center;box-shadow:0 6px 20px rgba(37,99,235,0.15)}
+    .nav{display:flex;gap:14px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 460px;gap:28px;align-items:center;margin-bottom:40px}
+    .hero-left{padding:22px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:var(--radius);box-shadow:0 8px 40px rgba(2,6,23,0.6)}
+    .label{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-weight:600;margin-bottom:16px}
+    h1{font-size:2rem;margin:0 0 12px}
+    p.lead{color:var(--muted);margin:0 0 18px;line-height:1.45}
+    .hero-cta{display:flex;gap:12px}
+    .hero-illus{border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(2,6,23,0.7);background:linear-gradient(135deg,#06203f44,transparent)}
+    .hero-illus img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* Platform cards */
+    .platforms{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+    {background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:12px;align-items:center}
+    .card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:16px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.08);
+display:flex;
+gap:12px;
+align-items:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+    /* Examples gallery */
+    .examples{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .example{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .example img{width:100%;display:block;border-radius:10px;object-fit:cover;height:160px}
+    .example h4{margin:10px 0 6px;font-size:0.98rem}
+    .example p{margin:0;font-size:0.88rem;color:var(--muted)}
+
+    /* CTA banner */
+    .cta-banner{margin-top:34px;padding:18px;border-radius:14px;background:linear-gradient(90deg, rgba(37,99,235,0.12), rgba(234,88,12,0.06));display:flex;gap:18px;align-items:center;justify-content:space-between}
+    .cta-left h3{margin:0;font-size:1.05rem}
+    .cta-left p{margin:6px 0 0;color:var(--muted)}
+
+    footer{margin-top:46px;text-align:center;color:var(--muted);font-size:0.9rem}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero-illus{height:340px}
+      .examples{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .wrap{margin:20px;padding:16px}
+      .nav{display:none}
+      .examples{grid-template-columns:1fr}
+      h1{font-size:1.6rem}
+    }
+
+    s
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600}
+    body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 30%, rgba(37,99,235,0.35), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(234,88,12,0.35), transparent 40%);
+z-index:-1;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="mark"><i class="fa-brands fa-facebook-f"></i></div>
+        Social Ads Studio
+      </div>
+      <nav class="nav">
+        <a href="#platforms">Platforms</a>
+        <a href="#examples">idea</a>
+        
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-left">
+          <span class="label">Advertising • Strategy • Creative</span>
+          <h1>Advertisement on social media</h1>
+          <p class="lead">We design conversion-focused campaigns, creative assets, and measurable reporting that scale — whether you want brand awareness, leads or direct sales.</p>
+
+          
+
+          <div class="platforms" id="platforms">
+            <div class="card">
+  <div class="icon" style="background:#157ab9"><i class="fa-brands fa-facebook-f"></i>></div>
+  <div>
+    <h3>Facebook Ads</h3>
+    <p>Real-time promotion, conversation-driven campaigns and event amplification.</p>
+                <h3 class="h3"><a href="https://www.facebook.com/business/tools/facebook-ads/get-started" class="card-title">Meta Ads Campaign</a></h3>
+            <a href=a href="https://www.facebook.com/business/tools/facebook-ads/get-started">
+Meta Ads Campaign
+</a>></a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="icon" style="background:linear-gradient(135deg,#C13584,#E1306C)"><i class="fa-brands fa-instagram"></i></div>
+              <div>
+                <h3>Instagram Ads</h3>
+                <p>Visually-led creatives, Reels-first strategies, and influencer amplification.</p>
+                <h3 class="h3"><a href="https://sproutsocial.com/insights/instagram-advertising/" class="card-title">Influencer Marketing Project</a></h3>
+            <a href="https://sproutsocial.com/insights/instagram-advertising/"></a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="icon" style="background:var(--accent-2)"><i class="fa-brands fa-youtube"></i></div>
+              <div>
+                <h3>YouTube Ads</h3>
+                <p>Video-first storytelling to capture attention and drive lower-funnel actions.</p>
+                <h3 class="h3"><a href="https://www.youtube.com/intl/en_id/ads/" class="card-title">Video Advertising Project</a></h3>
+            <a href="https://www.youtube.com/intl/en_id/ads/"></a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="icon" style="background:#1DA1F2"><i class="fa-brands fa-x-twitter"></i></div>
+              <div>
+                <h3>Twitter Ads</h3>
+                <p>Real-time promotion, conversation-driven campaigns and event amplification.</p>
+                <h3 class="h3"><a href="https://business.x.com/en/help/troubleshooting/how-x-ads-work class="card-title">MailChimp Campaign Design</a></h3>
+            <a href="https://business.x.com/en/help/troubleshooting/how-x-ads-work" class="card-title">
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+              <div class="icon" style="background:#ea4335"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <p class="card-subtitle">Email Marketing</p>
+                <p>sent a text message,attention with style making inmages.</p>
+            <h3 class="h3"><a href="https://www.benchmarkemail.com/?utm_campaign=Keywords-Email-Marketing&utm_source=google&utm_medium=cpc&utm_content=&utm_term=email%20marketing&gad_source=1&gad_campaignid=20917441581&gbraid=0AAAAADt8NyjtwzPtoLRst1HNJ6XBYGeuS&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vFjj-cg5UejdqygY1RZchliLTcvMJjh6FZzysW1iFqrfzJhD_GZot0aAj2XEALw_wcB" class="card-title">MailChimp Campaign Design</a></h3>
+            <a href="https://www.benchmarkemail.com/?utm_campaign=Keywords-Email-Marketing&utm_source=google&utm_medium=cpc&utm_content=&utm_term=email%20marketing&gad_source=1&gad_campaignid=20917441581&gbraid=0AAAAADt8NyjtwzPtoLRst1HNJ6XBYGeuS&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vFjj-cg5UejdqygY1RZchliLTcvMJjh6FZzysW1iFqrfzJhD_GZot0aAj2XEALw_wcB"></a>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="card">
+              <div class="icon" style="background:#1DA1F2"><i class="fa-solid fa-envelope"></i>></i></div>
+              <div>
+                <p class="card-subtitle">Affiliate Marketing</p>
+                <p>learn new thing and earn money.</p>
+            <h3 class="h3"><a href="https://leadsguru.in/" class="card-title">Affiliate Campaign Development</a></h3>
+            <a href="https://leadsguru.in/"></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="hero-illus">
+          <picture>
+           
+          </picture>
+        </aside>
+      </section>
+
+       <div class="about-content">
+
+            <h2 class="h2 section-title">About Us</h2>
+
+            <p class="section-text">
+             We are a team of creative and tech-driven individuals dedicated to helping businesses grow through the power of social media. Our goal is to design and manage effective advertising campaigns on platforms such as Facebook, Instagram, YouTube, Twitter (X), and LinkedIn.
+
+             By combining creativity with technology, we deliver impactful ads that attract the right audience and generate measurable results. Our focus is on understanding customer behavior, analyzing data, and optimizing campaigns to ensure maximum engagement and return on investment (ROI).
+
+             We believe that social media is more than just a communication platform — it’s a powerful marketing tool that can build strong brand connections and drive business success in the digital era.
+            <br>
+            We believe advertising isn’t just about visibility — it’s about connection and conversion.
+            <br>
+            Whether you’re launching a new brand or scaling an established one, we’ll help you tell your story, reach your ideal audience, and turn clicks into loyal customers.
+<br>
+<br>
+           💡 Our Mission:
+           <br>
+            To empower businesses to grow online through creative storytelling, strategic advertising, and measurable marketing success.
+<br>
+<br>
+           💬 Our Vision:
+           <br>
+            To be a trusted digital growth partner for every brand that believes in the power of social media
+             <br>
+             <p> Want to Experience Result-Oriented Digital Marketing for you Company!</p>
+
+            </p>
+
+      <section id="examples" class="examples">
+        <div class="example">
+          <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=800&auto=format&fit=crop" alt="Facebook ad example">
+          <h4>Facebook — Lead Gen</h4>
+          <p class="muted">Carousel creative + lead form for high-intent signups.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+        <div class="example">
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="Instagram ad example">
+          <h4>Instagram — Brand Lift</h4>
+          <p class="muted">Reel optimized creative & influencer partnership.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+        <div class="example">
+          <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=800&auto=format&fit=crop" alt="YouTube ad example">
+          <h4>YouTube — Awareness</h4>
+          <p class="muted">Short-form skippable ads that hook in the first 3 seconds.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+        <div class="example">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop" alt="Twitter ad example">
+          <h4>Twitter — Live Events</h4>
+          <p class="muted">Promoted conversation and event-driven creatives.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+        <div class="example">
+          <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=800&auto=format&fit=crop" alt="Analytics dashboard">
+          <h4>Reporting — Clear ROAS</h4>
+          <p class="muted">Weekly dashboards, A/B insights, and conversion tracking.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+        <div class="example">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" alt="Creative team">
+          <h4>Creative — Rapid Iteration</h4>
+          <p class="muted">Multiple concepts & fast creative testing to find winners.</p>
+          <h3 class="h3"><a href="https://www.behance.net/search/users/social%20media%20ads" class="card-title">Advertising Project</a></h3>
+            <a href="https://www.behance.net/search/users/social%20media%20ads"></a>
+        </div>
+      </section>
+      
+ <section class="section about" id="about" aria-label="about">
+        <div class="container">
+
+          
+
+            <!-- <button class="play-btn" aria-label="Play video">
+              <ion-icon name="play" aria-hidden="true"></ion-icon>
+            </button> -->
+          </div>
+
+        <br>
+        <br>
+        <br>
+
+      <section>
+          <link rel="stylesheet" href="./assets/css/style1.css">
+          <h2 class="h2 section-title">Message Me..</h2>
+
+          <div class="column right">
+            <div class="container"></div>
+            
+            <form action="https://formspree.io/f/xwvrrnky" method="POST">
+              
+                <div>
+                  <label for="name">Name:</label>
+                  
+                <input type="text" id="name" name="name" required>
+              </div>
+             <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+               <br>
+               <br>
+                <label for="email">Subject:</label>
+                <input type="text" id="Subject" name="Subject" required>
+               <br>
+               <br>
+                <label for="email">Phone No:</label>
+                <input type="number" id="number" name="number" required>
+                <br>
+                <br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Submit</button>
+                <br>
+                <br>
+            </form>
+            <ul class="contact-list">
+
+            <li class="contact-item">
+              <div class="contact-card">
+
+                <div class="card-icon">
+                  <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Mail Here</h3>
+
+                  <a href="mailto:yashvasu011@gmail.com" class="card-link">yashvasu011@gmail.com</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <div class="contact-card">
+
+                <div class="card-icon">
+                  <ion-icon name="map-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Visit Here</h3>
+
+                  <address class="card-address">
+                    Indira Nagar,Nashik -422010
+                  </address>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <div class="contact-card">
+
+                <div class="card-icon">
+                  <ion-icon name="headset-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Call Here</h3>
+
+                  <a href="tel:+8830377693" class="card-link">+91 8830377693</a>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+    </main>
+
+    <footer>
+      <p>© <strong>yash@1234</strong> —Crafted for marketers</p>
+    </footer>
+  </div>
+</body>
+</html>
